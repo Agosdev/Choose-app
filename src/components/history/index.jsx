@@ -1,12 +1,11 @@
 import React from "react";
+import {Title, Span} from "./styled"
 
 function History({choice}) {
   return (
         <>
-            <div className="history__container">
-                <h3>Historial de opciones elegidas</h3>
-                <span>Selección anterior: {choice}</span>
-            </div>
+            <Title>Historial de opciones elegidas</Title>
+            <Span>Selección anterior: {choice}</Span>
         </>
   );
 }

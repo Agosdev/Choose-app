@@ -1,11 +1,12 @@
 import React from "react";
+import {StoryContainer} from "./styled"
 
 function Storyline({storyText}) {
   return (
         <>
-            <div className="story__container">
+            <StoryContainer>
                 <h2>{storyText}</h2>
-            </div>
+            </StoryContainer>
         </>
   );
 }

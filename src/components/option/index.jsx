@@ -1,12 +1,13 @@
 import React from "react";
+import {Button, Span} from "./styled"
 
 function Option({btnText, onClick, spanText}) {
+
+
   return (
         <>
-            <div className="option__container">
-                <button className="option__btn" onClick={onClick}>{btnText}</button>
-                <span>{spanText}</span>
-            </div>
+         <Button className="option__btn" onClick={onClick}>{btnText}</Button>
+         <Span>{spanText}</Span>
         </>
   );
 }
