@@ -1,71 +1,106 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Option from "../option";
 import History from "../history";
 import Storyline from "../storyline";
-import {Container, OptionContainer} from "./styled"
+import { Container, OptionContainer } from "./styled";
 
 function Slide() {
+  const [start, setStart] = useState(false);
+  const [end, setEnd] = useState(false);
+  const [path, setPath] = useState([]);
+  const [story, setStory] = useState("");
+  const [option, setOption] = useState("");
+  const [next, setNext] = useState(0);
+  const [textA, setTextA] = useState("");
+  const [textB, setTextB] = useState("");
+  const [storyLineA, setStoryLineA] = useState("");
+  const [storyLineB, setStoryLineB] = useState("");
 
-const [start, setStart] = useState(false)
-const [path, setPath] = useState([])
-const [story, setStory] = useState("")
-const [option, setOption] = useState("")
-const [next, setNext] = useState(0)
-const [textA, setTextA] = useState("")
-const [textB, setTextB] = useState("")
+  useEffect(() => {
+    const data = require("../../data.json");
+    const getData = () => {
+      const res = data.map((path) => {
+        const story = {
+          id: path.id,
+          storyText: path.historia,
+          option: path.opciones,
+        };
+        return story;
+      });
+      setPath(res);
+    };
+    getData();
+  }, []);
 
-useEffect(()=> {
-  const data = require('../../data.json')
-  const getData = () => {
-    const res = data.map(path => {
-      const story = {
-        id: path.id,
-        storyText: path.historia,
-        option: path.opciones
+  const showFirstStory = (e) => {
+    setStart(true);
+    setStory(path[0].storyText);
+    setTextA(path[0].option.a);
+    setTextB(path[0].option.b);
+
+    const Aline = path.filter((side) => (side.id.includes("a") ? side : null));
+
+    setStoryLineA(Aline);
+
+    const Bline = path.filter((side) => (side.id.includes("b") ? side : null));
+
+    setStoryLineB(Bline);
+
+    console.log(Aline);
+    console.log(Bline);
+  };
+
+  const handleClick = (e) => {
+    setOption(e.target.textContent);
+    setNext(next + 1);
+    if (next < 4) {
+      if (e.target.textContent === "A") {
+        setStory(storyLineA[next].storyText);
+        setTextA(storyLineA[next].option.a);
+        setTextB(storyLineA[next].option.b);
+      } else if (e.target.textContent === "B") {
+        setStory(storyLineB[next].storyText);
+        setTextA(storyLineB[next].option.a);
+        setTextB(storyLineB[next].option.b);
       }
-      return story
-      }
-      )
-      setPath(res)
-      }
-    getData()
-},[])
+    } else {
+      setEnd(true);
+    }
+  };
 
-
-const showFirstStory = e => {
-  setStory(path[0].storyText)
-  setTextA(path[0].option.a)
-  setTextB(path[0].option.b)
-  setStart(true)
-}
-
-const handleClick = e => {
-    setOption(e.target.textContent)
-    // const choiceRandom = Math.floor(Math.random() * path.length)
-    // const choiceSelected = path[choiceRandom].storyText
-    // setStory(choiceSelected)
-    let i = next+1
-    if (i<8) {
-      setNext(i)
-      setStory(path[i].storyText)
-      setTextA(path[i].option.a)
-      setTextB(path[i].option.b)
-      }
-  }
-
+  const reset = (e) => {
+    setNext(0);
+    setStory(path[0].storyText);
+    setTextA(path[0].option.a);
+    setTextB(path[0].option.b);
+  };
 
   return (
-        <Container>
-            <button className={start ? "start__btn hide" : "start__btn"} onClick={showFirstStory}> ¿Listo para empezar?</button>
-            <div className={start ? "show" : "hide"}>
-                <Storyline storyText={story}/>
-                <OptionContainer>
-                    <Option onClick={handleClick} btnText="A" spanText={textA}/>
-                    <Option onClick={handleClick} btnText="B" spanText={textB}/>
-                </OptionContainer>
-                <History choice={option} />
-            </div>
-         </Container>
+    <Container>
+      <button
+        className={start ? "start__btn hide" : " start__btn"}
+        onClick={showFirstStory}
+      >
+        ¿Listo para empezar?
+      </button>
+      {end ? (
+        <span>GAME OVER</span>
+      ) : (
+        <>
+          <div className={start ? "show" : "hide"}>
+            <Storyline storyText={story} />
+            <OptionContainer>
+              <Option onClick={handleClick} btnText="A" spanText={textA} />
+              <Option onClick={handleClick} btnText="B" spanText={textB} />
+            </OptionContainer>
+            <History choice={option} />
+          </div>
+        </>
+      )}
+      <button className="back__btn" onClick={reset}>
+        Reiniciar juego
+      </button>
+    </Container>
   );
 }
 

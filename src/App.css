@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+
 * {
   padding: 0;
   margin: 0;
@@ -14,12 +16,29 @@ button {
 }
 
 .start__btn {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  font-family: 'Amatic SC', cursive;
+  font-size: 2em;
   padding: 40px;
-  background-color: rgb(0, 255, 157);
-  box-shadow: 2px 5px 30px 10px rgb(73, 255, 185);
-  font-weight: 800;
+  background-color: rgb(255, 0, 0);
+  box-shadow: 2px 2px 10px 10px rgb(255, 0, 0);
   border: none;
   border-radius: 50%;
+}
+
+.start__btn:hover {
+  background-color: rgb(0, 255, 157);
+  box-shadow: 2px 2px 10px 10px rgb(0, 255, 157);
+}
+
+.back__btn {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: transparent;
+  color: antiquewhite;
+  border-color: #646464;
 }
 
 .hide {

@@ -2,7 +2,7 @@ import React from "react";
 import {Button, Span} from "./styled"
 
 function Option({btnText, onClick, spanText}) {
-
+  
 
   return (
         <>
