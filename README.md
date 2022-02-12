@@ -1,3 +1,3 @@
-#  "Choose your own adventure" game. ## + Styled Components
+#  "Choose your own adventure" game. + Styled Components
 
 
