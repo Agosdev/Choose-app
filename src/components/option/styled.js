@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 export const Button = styled.button`
-  font-size: 1.2em;
-  font-weight: 800;
-  padding: 1.5em;
+  font-size: 2em;
+  font-weight: 900;
+  padding :0.5em;
   background-color: rgb(0, 255, 157);
   box-shadow: 2px 2px 10px 10px rgb(0, 255, 157);
   border: none;
@@ -11,6 +11,7 @@ export const Button = styled.button`
 `;
 
 export const Span = styled.span`
-  margin: 2em;
+  font-size: 1.5em;
+  margin: 1.2em;
 `;
 

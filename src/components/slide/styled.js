@@ -6,8 +6,8 @@ export const Container = styled.div`
 
 export const OptionContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-top: 14em;
+  margin-top: 20em;
 `;
 

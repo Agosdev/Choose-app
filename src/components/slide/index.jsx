@@ -10,6 +10,7 @@ function Slide() {
   const [path, setPath] = useState([]);
   const [story, setStory] = useState("");
   const [option, setOption] = useState("");
+  const [options, setOptions] = useState([]);
   const [next, setNext] = useState(0);
   const [textA, setTextA] = useState("");
   const [textB, setTextB] = useState("");
@@ -45,13 +46,12 @@ function Slide() {
     const Bline = path.filter((side) => (side.id.includes("b") ? side : null));
 
     setStoryLineB(Bline);
-
-    console.log(Aline);
-    console.log(Bline);
   };
 
   const handleClick = (e) => {
     setOption(e.target.textContent);
+    setOptions([...options, e.target.textContent])
+
     setNext(next + 1);
     if (next < 4) {
       if (e.target.textContent === "A") {
@@ -92,14 +92,14 @@ function Slide() {
             <OptionContainer>
               <Option onClick={handleClick} btnText="A" spanText={textA} />
               <Option onClick={handleClick} btnText="B" spanText={textB} />
+              <button className="back__btn" onClick={reset}>
+                Reiniciar juego
+              </button>
             </OptionContainer>
-            <History choice={option} />
+            <History choice={options} />
           </div>
         </>
       )}
-      <button className="back__btn" onClick={reset}>
-        Reiniciar juego
-      </button>
     </Container>
   );
 }
