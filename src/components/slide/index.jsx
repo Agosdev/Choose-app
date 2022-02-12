@@ -70,6 +70,8 @@ function Slide() {
 
   const reset = (e) => {
     setNext(0);
+    setOption("")
+    setOptions([])
     setStory(path[0].storyText);
     setTextA(path[0].option.a);
     setTextB(path[0].option.b);
