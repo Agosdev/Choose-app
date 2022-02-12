@@ -96,7 +96,7 @@ function Slide() {
                 Reiniciar juego
               </button>
             </OptionContainer>
-            <History choice={options} />
+            <History choice={option} choices={options}/>
           </div>
         </>
       )}
