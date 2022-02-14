@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Option from "../option";
-import History from "../history";
-import Storyline from "../storyline";
+import Option from "../Option/option";
+import History from "../History/history";
+import Storyline from "../Storyline/storyline";
 import { Container, OptionContainer } from "./styled";
 
 function Slide() {
