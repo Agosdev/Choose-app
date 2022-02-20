@@ -50,3 +50,8 @@ button {
 .show {
   display: block;
 }
+
+.game-over {
+  color: rgb(0, 255, 42);
+  font-size: 5em;
+}
